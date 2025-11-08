@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세대 연결 스토리텔러 - 부모님께 드리는 특별한 선물</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #B8860B;
+            --navy: #1A237E;
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --text-gray: #4A4A4A;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: var(--white);
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .serif {
+            font-family: 'Noto Serif KR', serif;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-gray);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 6rem;
+            background: linear-gradient(to bottom, var(--light-gray) 0%, var(--white) 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            line-height: 1.5;
+            color: var(--navy);
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .hero h1 .highlight {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            font-weight: 300;
+            margin-top: 1.5rem;
+        }
+
+        /* Section */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            color: var(--navy);
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        section h3 {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Problem Section */
+        .problem {
+            background: var(--light-gray);
+        }
+
+        .problem ul {
+            list-style: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .problem li {
+            padding: 1.5rem 0;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .problem li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Solution */
+        .solution {
+            text-align: center;
+        }
+
+        .solution p {
+            max-width: 800px;
+            margin: 2rem auto;
+            font-size: 1.15rem;
+            line-height: 2;
+        }
+
+        .solution blockquote {
+            max-width: 700px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: var(--light-gray);
+            border-left: 4px solid var(--gold);
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--navy);
+        }
+
+        /* Benefits */
+        .benefits {
+            background: var(--light-gray);
+        }
+
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .benefit-card h4 {
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .benefit-card p {
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        /* Trust */
+        .trust p {
+            max-width: 800px;
+            margin: 1.5rem auto;
+            font-size: 1.15rem;
+            line-height: 2;
+            text-align: center;
+        }
+
+        .trust .partner {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 700px;
+            margin: 3rem auto;
+            text-align: center;
+            font-weight: 500;
+            color: var(--navy);
+        }
+
+        /* Pricing */
+        .pricing {
+            background: var(--light-gray);
+        }
+
+        .price-box {
+            max-width: 700px;
+            margin: 3rem auto;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.1);
+            border: 2px solid var(--gold);
+        }
+
+        .price-box h4 {
+            font-size: 1.4rem;
+            color: var(--navy);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .price-box ul {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .price-box li {
+            padding: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .price-box li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .price-display {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid #E0E0E0;
+        }
+
+        .original-price {
+            font-size: 1.1rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-bottom: 0.5rem;
+        }
+
+        .special-price {
+            font-size: 2.5rem;
+            color: var(--gold);
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .price-note {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .limited {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        .cta h2 {
+            font-size: 2.2rem;
+            color: var(--navy);
+            margin-bottom: 2rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+            line-height: 2;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Buttons */
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            min-width: 350px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: #9A7109;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(184, 134, 11, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--navy);
+            border: 2px solid var(--navy);
+        }
+
+        .btn-secondary:hover {
+            background: var(--navy);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 2rem;
+            font-size: 0.95rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+            margin: 0.5rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            section h2 {
+                font-size: 1.6rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .btn {
+                min-width: 280px;
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+
+            .benefit-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#problem">문제</a></li>
+            <li><a href="#solution">솔루션</a></li>
+            <li><a href="#benefits">혜택</a></li>
+            <li><a href="#trust">신뢰</a></li>
+            <li><a href="#pricing">가격</a></li>
+            <li><a href="#cta">신청</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero fade-in">
+        <div class="container">
+            <h1 class="serif">
+                부모님의 환갑, 칠순...<br>
+                "고맙습니다" 말 한마디로 부족하다면.<br>
+                단 하나뿐인 <span class="highlight">'인생 헌정 영상'</span>으로<br>
+                평생 잊지 못할 감동을 선물하세요.
+            </h1>
+            <p class="subtitle">세대 연결 스토리텔러가 만드는 고품격 레거시 콘텐츠</p>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem" id="problem">
+        <div class="container">
+            <h2 class="serif">매번 똑같은 선물, 올해는 정말 다르게 하고 싶은데...</h2>
+            <ul>
+                <li>매년 돌아오는 부모님 생신, 올해는 <strong>정말 특별한 선물</strong>을 드리고 싶습니다.</li>
+                <li>현금이나 흔한 선물 대신, 부모님이 <strong>걸어오신 삶의 가치</strong>를 되새길 수 있는 의미 있는 선물을 찾고 계신가요?</li>
+                <li>바쁘다는 핑계로 "사랑합니다", "고맙습니다"라는 말을 자주 전하지 못해 <strong>마음 한편이 무겁지는 않으셨나요?</strong></li>
+                <li>시간이 더 흐르기 전, 부모님의 빛나는 순간과 지혜를 <strong>소중하게 기록</strong>하고 싶습니다.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution" id="solution">
+        <div class="container">
+            <h2 class="serif">그래서 저희는 '생신 헌정 영상'을 만듭니다.</h2>
+            <h3>세대 연결 스토리텔러는 단순한 영상 제작자가 아닙니다.</h3>
+            <p>
+                자녀분들의 진솔한 인터뷰와 어르신의 경험담을 한 편의 감동적인 다큐멘터리처럼 엮어냅니다.
+            </p>
+            <p>
+                부모님의 삶에서 가장 빛났던 순간, 가족을 위해 헌신한 세월, 그리고 자녀에게 전하고 싶은 지혜를 <strong>고품격 영상(Legacy Content)</strong>으로 기록하여 선물합니다.
+            </p>
+            <blockquote class="serif">
+                "당신의 이야기가 우리 가족의 역사가 됩니다."
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <h2 class="serif">세대 연결 스토리텔러가 제공하는 3가지 핵심 가치</h2>
+            <div class="benefit-grid">
+                <div class="benefit-card">
+                    <h4>1. 마음만 준비하세요</h4>
+                    <p>
+                        어색하고 쑥스러워 직접 여쭙기 힘들었던 이야기들. 미디어 콘텐츠 제작과 커뮤니케이션(연기/발표) 역량을 갖춘 전문 스토리텔러가 진솔한 대화를 이끌어내고, 숨겨진 감동을 찾아냅니다.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <h4>2. 세상에 단 하나뿐인 고품격 헌정 영상</h4>
+                    <p>
+                        단순한 사진 스크랩이 아닙니다. 전문적인 영상 기획, 촬영, 편집(영상/글) 기술을 활용하여 부모님의 인생을 한 편의 영화처럼 품격 있게 재구성합니다.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <h4>3. 온 가족이 함께 추억하는 '영원한 유산'</h4>
+                    <p>
+                        생신 잔치에서 함께 시청하며 잊을 수 없는 감동을 나누고, 그 기록은 가족의 소중한 유산(Legacy)으로 영원히 보존됩니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust" id="trust">
+        <div class="container">
+            <h2 class="serif">누가 이토록 특별한 영상을 만드나요?</h2>
+            <p>
+                본 서비스는 <strong>미디어 콘텐츠 제작</strong>과 <strong>타인에 대한 깊은 공감 및 설명(교육)</strong> 역량을 겸비한 '세대 연결 스토리텔러'가 직접 기획하고 제작합니다.
+            </p>
+            <p>
+                우리는 말 속에 담긴 진심을 파악하고, 그것을 가장 감동적으로 표현하는 방법을 압니다.
+            </p>
+            <div class="partner">
+                <strong>대전 지역 노인복지관 및 노인돌봄센터</strong>와의 긴밀한 협력을 통해<br>
+                어르신들의 삶을 더 깊이 이해하며, 전문성을 바탕으로 신뢰할 수 있는 콘텐츠를 제작합니다.
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="serif">MVP 런칭 기념, 첫 10분을 위한 특별 혜택</h2>
+            <h3>부모님께 잊을 수 없는 선물을 전하고, 저희의 첫 번째 이야기의 주인공이 되어주세요.</h3>
+            <div class="price-box">
+                <h4>[생신 헌정 영상 제작 풀 패키지]</h4>
+                <ul>
+                    <li>사전 기획 인터뷰 (자녀 및 부모님)</li>
+                    <li>1일 집중 촬영 (인터뷰 및 스케치)</li>
+                    <li>전문 편집, 색 보정 및 음향 작업</li>
+                    <li>최종 영상 파일(고화질) 및 고급 USB 패키지 제공</li>
+                </ul>
+                <div class="price-display">
+                    <p class="original-price">정가 1,000,000원</p>
+                    <p class="special-price">MVP 특별가 500,000원</p>
+                    <p class="price-note">(VAT 별도)</p>
+                    <span class="limited">선착순 10팀 한정</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="cta">
+        <div class="container">
+            <h2 class="serif">시간은 기다려주지 않습니다.</h2>
+            <p>
+                부모님의 가장 빛나는 오늘을,<br>
+                그리고 그분들이 걸어오신 위대한 여정을 지금 바로 기록하세요.
+            </p>
+            <p>
+                더 늦기 전에, 세상에서 가장 소중한 선물을 준비하세요.
+            </p>
+            <div class="btn-container">
+                <a href="#" class="btn btn-primary" onclick="handleApply(event)">지금 바로 '헌정 영상' 신청하기 (선착순 10명)</a>
+                <a href="#" class="btn btn-secondary" onclick="handleInquiry(event)">혜택/가격 관련 간단히 문의하기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>세대 연결 스토리텔러</strong></p>
+            <p>대전광역시 기반 지역 정주형 창직 프로젝트</p>
+            <p style="margin-top: 1.5rem;">문의: contact@legacy-storyteller.kr | 전화: 042-XXX-XXXX</p>
+            <p style="margin-top: 1rem; font-size: 0.85rem;">© 2025 세대 연결 스토리텔러. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function handleApply(e) {
+            e.preventDefault();
+            alert('신청 페이지로 이동합니다.\n\n실제 서비스에서는 신청 폼이나 예약 시스템으로 연결됩니다.\n\n감사합니다!');
+        }
+
+        function handleInquiry(e) {
+            e.preventDefault();
+            alert('문의 페이지로 이동합니다.\n\n실제 서비스에서는 카카오톡 채널, 문의 폼, 또는 전화 연결이 가능합니다.\n\n감사합니다!');
+        }
+
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
